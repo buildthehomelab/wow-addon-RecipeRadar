@@ -166,11 +166,14 @@ function RecipeRadar_SkillDB_ResetTradeSkillFilters()
    end
    SetTradeSkillSubClassFilter(0, 1, 1)
 
-   -- save the "Have Materials" check state
-   old["mats"] = TradeSkillFrameAvailableFilterCheckButton:GetChecked()
+   -- save the "Have Materials" check state (the Blizzard trade skill UI is
+   -- load-on-demand, so its frames may not exist yet)
+   if TradeSkillFrameAvailableFilterCheckButton then
+      old["mats"] = TradeSkillFrameAvailableFilterCheckButton:GetChecked()
+   end
    TradeSkillOnlyShowMakeable(nil)
 
-   TradeSkillFrame_Update()
+   if TradeSkillFrame_Update then TradeSkillFrame_Update() end
    return old
 
 end
@@ -182,10 +185,12 @@ function RecipeRadar_SkillDB_RestoreTradeSkillFilters(settings)
    SetTradeSkillSubClassFilter(settings["subclass"], 1, 1)
    SetTradeSkillInvSlotFilter(settings["slot"], 1, 1)
    if settings["search"] then
-      TradeSkillFrameEditBox:SetText(settings["search"])
+      if TradeSkillFrameEditBox then
+         TradeSkillFrameEditBox:SetText(settings["search"])
+      end
       SetTradeSkillItemNameFilter(settings["search"])
    end
-   TradeSkillFrame_Update()
+   if TradeSkillFrame_Update then TradeSkillFrame_Update() end
 
 end
 
