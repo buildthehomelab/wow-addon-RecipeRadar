@@ -359,7 +359,7 @@ function RecipeRadar_GetGSC(copper)
 end
 
 -- Format text by color for gold, silver and copper (from EnhTooltip).
-function RecipeRadar_GetGSCString(copper)
+function RecipeRadar_GetGSCString(copper, exact)
 
    local TEXT_NONE = "0"
    local GSC_GOLD = "ffd100"
