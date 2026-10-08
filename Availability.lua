@@ -154,7 +154,7 @@ function RecipeRadar_Availability_CreateTooltip(recipe)
 
          else
             local bleh = 0
-            if (knows) then bleh = 1 end
+            if (RecipeRadar_Availability_IsKnown(player, recipe)) then bleh = 1 end
             RecipeRadar_Print("ASSERT FAILED: " .. player .. " - " ..
                   recipe.Type .. ", " .. recipe_name .. ", " .. recipe.Skill ..
                   " (have " .. rank .. ") knows = " .. bleh)
